@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Twin - AI-Powered Video Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#FF0000"/>
+                    <path d="M22 16L14 20.5V11.5L22 16Z" fill="white"/>
+                </svg>
+                <h1>YouTube Twin</h1>
+            </div>
+            <p class="tagline">Chat with any YouTube video using AI</p>
+        </header>
+
+        <main class="main-content">
+            <section class="video-input-section" id="videoInputSection">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="videoUrlInput" 
+                            placeholder="Paste YouTube URL here..."
+                            class="video-input"
+                        >
+                        <button id="processBtn" class="process-btn">
+                            <span class="btn-text">Process Video</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                    <p class="hint">Supports youtube.com and youtu.be URLs</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Semantic Search</h3>
+                        <p>Find exact moments in videos using natural language</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>AI Chat</h3>
+                        <p>Ask questions and get answers with timestamp references</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Smart Chunking</h3>
+                        <p>Intelligent 30-second segments with contextual overlap</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>Click to Jump</h3>
+                        <p>Click any timestamp to jump directly in the video</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chat-section hidden" id="chatSection">
+                <div class="video-container">
+                    <div id="videoPlayer"></div>
+                    <div class="video-info">
+                        <h3 id="videoTitle">Video loaded successfully!</h3>
+                        <a id="videoLink" href="#" target="_blank" class="video-link">Open in YouTube</a>
+                    </div>
+                </div>
+
+                <div class="split-view">
+                    <div class="transcript-panel">
+                        <div class="panel-header">
+                            <h3>📝 Transcript</h3>
+                            <div class="search-box">
+                                <input 
+                                    type="text" 
+                                    id="transcriptSearch" 
+                                    placeholder="Search transcript..."
+                                    class="search-input"
+                                >
+                                <button id="searchBtn" class="search-btn">Search</button>
+                            </div>
+                        </div>
+                        <div class="transcript-content" id="transcriptContent">
+                            <div class="loading-state">
+                                <div class="spinner"></div>
+                                <p>Loading transcript...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-panel">
+                        <div class="panel-header">
+                            <h3>💬 AI Assistant</h3>
+                            <button id="clearChatBtn" class="clear-btn">Clear</button>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="welcome-message">
+                                <h4>👋 Hello! I'm your AI assistant.</h4>
+                                <p>I've analyzed this video. Ask me anything about its content!</p>
+                                <div class="suggestions">
+                                    <p><strong>Try asking:</strong></p>
+                                    <button class="suggestion-btn" data-query="What is this video about?">What is this video about?</button>
+                                    <button class="suggestion-btn" data-query="Summarize the main points">Summarize the main points</button>
+                                    <button class="suggestion-btn" data-query="What are the key takeaways?">What are the key takeaways?</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <textarea 
+                                id="chatInput" 
+                                placeholder="Ask a question about the video..."
+                                rows="2"
+                                class="chat-input"
+                            ></textarea>
+                            <button id="sendBtn" class="send-btn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M2 10L18 2L10 18L8 11L2 10Z" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="statusMessage" class="status-message hidden"></div>
+    </div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
